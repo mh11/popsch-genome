@@ -1,0 +1,73 @@
+@namespace("popsch.genome.storage.models.alleles.avro")
+
+protocol VariantPopsch {
+
+  record VariantPopschEntry {
+
+  /**
+   * Chromosome of the reported allele.
+   **/
+    string chromosome;
+
+  /**
+   * Start position of the allele.
+   **/
+    int start;
+
+  /**
+   * End position of the allele.
+   **/
+    int end;
+
+  /**
+   * Reference allele.
+   **/
+    string reference;
+
+  /**
+   * Alternate allele.
+   **/
+    string alternate;
+
+    int numberOfSamples;
+  /**
+   * Number of samples with PASS flag
+    **/
+    int pass;
+  /**
+   * List of IDs with flags other than PASS
+    **/
+    array<int> notPass;
+
+  /**
+    * Array of REF (e.g. A), ALT (e.g. G) and Secondary alternate(s) (e.g. T,C,*). REF is at index 0, ALT at index 1, etc ...
+  **/
+    array<string> alleleBases;
+
+  /**
+   * List of IDs with NO-CALL (./.)
+   **/
+    array<int> noCall;
+  /**
+   * Number of samples with HomRef call (0/0)
+   **/
+    int homRefCount;
+
+  /**
+   * List of IDs with HET (0/1 or 1/0)
+   **/
+    array<int> het;
+  /**
+   * List of IDs with HomAlt (1/1)
+   **/
+    array<int> homAlt;
+  /**
+    * other genotypes e.g. 0, 1, 0/2 or 1/2 etc. Does NOT include NOCALL (. or ./.), 0/0, 0/1 and 1/1.
+    * Key is the genotype e.g. 1/2 referring to the index  of the alleleBases array for the bases.
+    * Value is an array of genotpyes.
+   **/
+    map<array<int>> otherGenotypes;
+
+  }
+
+}

@@ -1,0 +1,86 @@
+{
+  "protocol" : "VariantPopsch",
+  "namespace" : "popsch.genome.storage.models.alleles.avro",
+  "types" : [ {
+    "type" : "record",
+    "name" : "VariantPopschEntry",
+    "fields" : [ {
+      "name" : "chromosome",
+      "type" : "string",
+      "doc" : "* Chromosome of the reported allele.\n   *"
+    }, {
+      "name" : "start",
+      "type" : "int",
+      "doc" : "* Start position of the allele.\n   *"
+    }, {
+      "name" : "end",
+      "type" : "int",
+      "doc" : "* End position of the allele.\n   *"
+    }, {
+      "name" : "reference",
+      "type" : "string",
+      "doc" : "* Reference allele.\n   *"
+    }, {
+      "name" : "alternate",
+      "type" : "string",
+      "doc" : "* Alternate allele.\n   *"
+    }, {
+      "name" : "numberOfSamples",
+      "type" : "int"
+    }, {
+      "name" : "pass",
+      "type" : "int",
+      "doc" : "* Number of samples with PASS flag\n    *"
+    }, {
+      "name" : "notPass",
+      "type" : {
+        "type" : "array",
+        "items" : "int"
+      },
+      "doc" : "* List of IDs with flags other than PASS\n    *"
+    }, {
+      "name" : "alleleBases",
+      "type" : {
+        "type" : "array",
+        "items" : "string"
+      },
+      "doc" : "* Array of REF (e.g. A), ALT (e.g. G) and Secondary alternate(s) (e.g. T,C,*). REF is at index 0, ALT at index 1, etc ...\n  *"
+    }, {
+      "name" : "noCall",
+      "type" : {
+        "type" : "array",
+        "items" : "int"
+      },
+      "doc" : "* List of IDs with NO-CALL (./.)\n   *"
+    }, {
+      "name" : "homRefCount",
+      "type" : "int",
+      "doc" : "* Number of samples with HomRef call (0/0)\n   *"
+    }, {
+      "name" : "het",
+      "type" : {
+        "type" : "array",
+        "items" : "int"
+      },
+      "doc" : "* List of IDs with HET (0/1 or 1/0)\n   *"
+    }, {
+      "name" : "homAlt",
+      "type" : {
+        "type" : "array",
+        "items" : "int"
+      },
+      "doc" : "* List of IDs with HomAlt (1/1)\n   *"
+    }, {
+      "name" : "otherGenotypes",
+      "type" : {
+        "type" : "map",
+        "values" : {
+          "type" : "array",
+          "items" : "int"
+        }
+      },
+      "doc" : "* other genotypes e.g. 0, 1, 0/2 or 1/2 etc. Does NOT include NOCALL (. or ./.), 0/0, 0/1 and 1/1.\n    * Key is the genotype e.g. 1/2 referring to the index  of the alleleBases array for the bases.\n    * Value is an array of genotpyes.\n   *"
+    } ]
+  } ],
+  "messages" : { }
+}
