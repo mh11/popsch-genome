@@ -1,2 +1,2 @@
 # popsch-genome
-Data schema for genome population data
+Genome variation data schema for large populations
