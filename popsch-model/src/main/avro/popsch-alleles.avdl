@@ -2,7 +2,39 @@
 
 protocol VariantPopsch {
 
-  record VariantPopschEntry {
+  record GtRecord {
+    /**
+     * Existing Genotype except noCall and homRef.
+     * An altId refers to the variantEntry (1 based) and could refer to an overArching alternative
+     **/
+    string gt;
+
+    /**
+     * SampleIDs with this genotype.
+     **/
+    array<int> sampleIDs;
+  }
+
+  record VariantEntry{
+
+  /**
+   * Reference allele.
+   **/
+    string reference;
+
+  /**
+   * Alternate allele - we can use an * to indicate an overaching DEL.
+   **/
+    string alternate;
+
+  /**
+   * List of sampleIDs with this variant
+   **/
+    array<int> sampleIDs;
+
+  }
+
+  record VariantCall {
 
   /**
    * Chromosome of the reported allele.
@@ -14,59 +46,22 @@ protocol VariantPopsch {
    **/
     int start;
 
-  /**
-   * End position of the allele.
-   **/
-    int end;
+    array<VariantEntry> variants;
 
   /**
-   * Reference allele.
-   **/
-    string reference;
-
-  /**
-   * Alternate allele.
-   **/
-    string alternate;
-
-    int numberOfSamples;
-  /**
-   * Number of samples with PASS flag
-    **/
-    int pass;
-  /**
-   * List of IDs with flags other than PASS
+   * List of called sampleIDs without PASS flag
     **/
     array<int> notPass;
-
-  /**
-    * Array of REF (e.g. A), ALT (e.g. G) and Secondary alternate(s) (e.g. T,C,*). REF is at index 0, ALT at index 1, etc ...
-  **/
-    array<string> alleleBases;
 
   /**
    * List of IDs with NO-CALL (./.)
    **/
     array<int> noCall;
-  /**
-   * Number of samples with HomRef call (0/0)
-   **/
-    int homRefCount;
 
   /**
-   * List of IDs with HET (0/1 or 1/0)
+   * List of genotypes
    **/
-    array<int> het;
-  /**
-   * List of IDs with HomAlt (1/1)
-   **/
-    array<int> homAlt;
-  /**
-    * other genotypes e.g. 0, 1, 0/2 or 1/2 etc. Does NOT include NOCALL (. or ./.), 0/0, 0/1 and 1/1.
-    * Key is the genotype e.g. 1/2 referring to the index  of the alleleBases array for the bases.
-    * Value is an array of genotpyes.
-   **/
-    map<array<int>> otherGenotypes;
+    array<GtRecord> genotypes;
 
   }
 
