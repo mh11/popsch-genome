@@ -27,11 +27,6 @@ protocol VariantPopsch {
    **/
     string alternate;
 
-  /**
-   * List of sampleIDs with this variant
-   **/
-    array<int> sampleIDs;
-
   }
 
   record VariantCall {
