@@ -27,13 +27,6 @@
       "name" : "alternate",
       "type" : "string",
       "doc" : "* Alternate allele - we can use an * to indicate an overaching DEL.\n   *"
-    }, {
-      "name" : "sampleIDs",
-      "type" : {
-        "type" : "array",
-        "items" : "int"
-      },
-      "doc" : "* List of sampleIDs with this variant\n   *"
     } ]
   }, {
     "type" : "record",
